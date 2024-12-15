@@ -29,21 +29,20 @@ public class PlayerService {
         int nullCount = 0;
         //count null
         for(String currSquare : inputState.getState()) {
-            if(currSquare == null) nullCount++;
+            if(currSquare == null || currSquare.isBlank()) nullCount++;
         }
 
         if(nullCount == 0) return inputState;
 
         Random random = new Random();
         int targetNullIndex = random.nextInt(nullCount);
-        System.out.println("Randomly set " + targetNullIndex);
         int currNull = 0;
         List<String> inputStrings = inputState.getState();
         List<String> outputStrings = new ArrayList<>();
 
         for (String currSquare: inputStrings) {
             String updatedSquare = currSquare;
-            if (currSquare == null) {
+            if (currSquare == null  || currSquare.isBlank()) {
                 if (currNull == targetNullIndex) {
                     updatedSquare = inputState.getNext();
                 }
